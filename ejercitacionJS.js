@@ -78,5 +78,83 @@ Ejemplo:
 input: Hola mundo
 Output: oauo
 
+let frase = prompt(`ingresa tu frase aqui`)
+let longitud = 0
+let vocales = []
+
+for (longitud = 0; longitud < frase.length; longitud++) {
+    if (frase.charAt(longitud) === "a") {
+        vocales.push("a")
+    } if (frase.charAt(longitud) === "e") {
+        vocales.push("e")
+    } if (frase.charAt(longitud) === "i") {
+        vocales.push("i")
+    }
+    if (frase.charAt(longitud) === "o") {
+        vocales.push("o")
+    }
+    if (frase.charAt(longitud) === "u") {
+        vocales.push("u")
+    } else {
+        console.log(`no hay vocales en esta posicion`)
+    }
+}
+document.write(`${vocales} son las vocales, ${longitud - vocales.length} son consonantes de 
+${frase.length} letras de la frase ingresada`)
 */
-let fraseUno = prompt(`Ingresa una frase`)
+
+/*
+10.- Escribe un programa que pida un número y nos diga si es divisible por 2, 3, 5 o 7 (sólo hay que comprobar si lo es por uno de los cuatro)
+Ejemplo: 
+
+input: 20
+Output: El 20 es divisible por 2.
+
+let numero = prompt(`ingresa un numero para verificar si es divisible`)
+
+if (numero % 2 === 0){
+    document.write(`El numero ${numero} es perfectamente divisible por 2`)
+} else if (numero % 3 === 0){
+    document.write(`El numero ${numero} es perfectamente divisible por 3`)
+} else if (numero % 5 === 0){
+    document.write(`El numero ${numero} es perfectamente divisible por 5`)
+} else if (numero % 7 === 0){
+    document.write(`El numero ${numero} es perfectamente divisible por 7`)
+} else {
+    document.write(`El numero ${numero} no es perfectamente divisible por 2, 3, 5 o 7`)
+}
+*/
+
+/*
+11.- Añadir al ejercicio anterior que nos diga por cuál de los cuatro es divisible (hay que decir todos por los que es divisible)
+Ejemplo: 
+
+input: 20       Output: El 20 es divisible por 2 y por 5.
+input: 210      Output: El 210 es divisible por 2, por 3, por 5 y por 7.
+*/
+
+let numero = prompt(`ingresa un numero para verificar si es divisible`)
+let esDivisible = []
+
+if (numero % 2 === 0){
+    esDivisible.push(`2 `)
+} if (numero % 3 === 0){
+    esDivisible.push(`3 `)
+} if (numero % 5 === 0){
+    esDivisible.push(`5 `)
+} if (numero % 7 === 0){
+    esDivisible.push(`7`)
+} else {
+    esDivisible.push(``)
+}
+
+document.write(`es divisible`)
+
+for (let i = 0; i < esDivisible.length; i++){
+    if(i < esDivisible.length){
+        document.write(` por ${esDivisible[i]}`)
+    } else {
+        document.write(`y por ${esDivisible[esDivisible.length -1]}`)
+    }
+}
+
