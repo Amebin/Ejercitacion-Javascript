@@ -131,30 +131,31 @@ Ejemplo:
 
 input: 20       Output: El 20 es divisible por 2 y por 5.
 input: 210      Output: El 210 es divisible por 2, por 3, por 5 y por 7.
-*/
 
 let numero = prompt(`ingresa un numero para verificar si es divisible`)
 let esDivisible = []
 
-if (numero % 2 === 0){
-    esDivisible.push(`2 `)
-} if (numero % 3 === 0){
-    esDivisible.push(`3 `)
-} if (numero % 5 === 0){
-    esDivisible.push(`5 `)
-} if (numero % 7 === 0){
-    esDivisible.push(`7`)
-} else {
-    esDivisible.push(``)
-}
-
-document.write(`es divisible`)
-
-for (let i = 0; i < esDivisible.length; i++){
-    if(i < esDivisible.length){
-        document.write(` por ${esDivisible[i]}`)
-    } else {
-        document.write(`y por ${esDivisible[esDivisible.length -1]}`)
+function divisible(numero){
+    if (numero % 2 === 0) {
+        esDivisible.push(`2`)
+    } 
+    if (numero % 3 === 0) {
+        esDivisible.push(`3`)
+    } if (numero % 5 === 0) {
+        esDivisible.push(`5`)
+    } if (numero % 7 === 0) {
+        esDivisible.push(`7`)
     }
+    
+    if (esDivisible.length === 0) {
+        return `El ${numero} no es divisible por 2, 3, 5 ni 7.`
+      } else {
+        const ultimoDivisible = esDivisible.pop();
+        const mensaje = `El ${numero} es divisible por ${esDivisible.join(', ')} ${(esDivisible.length > 0 ? ' y por ' : '')} ${ultimoDivisible}.`
+        return mensaje
+      }
+    
 }
 
+document.write(divisible(numero))
+*/
