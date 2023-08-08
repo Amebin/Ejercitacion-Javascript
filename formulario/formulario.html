@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <title>Practica Formulario</title>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <main>
+            <div class="d-flex justify-content-center text-center mt-5">
+                <form action="error">
+                    <div class="">
+                        <label for="nombreApellido" class="form-label col-8">Apellido y nombre</label>
+                        <input type="text" class="form-control" id="nombreApellido" >
+                    </div>
+
+                    <div class="">
+                        <label for="emailUsuario" class="form-label col-8">Email</label>
+                        <input type="email" class="form-control" id="emailUsuario">
+                    </div>
+
+                    <div class="">
+                        <label for="clave" class="form-label col-8">Contraseña</label>
+                        <input type="password" class="form-control" id="clave" minlength="8" maxlength="12">
+                    </div>
+
+                    <div class="form-check mt-2">
+                        <input type="checkbox" class="form-check-input" id="botonCheck" name="botonCheck">
+                        <label class="form-check-label" for="botonCheck" >Chekeamela</label>
+                    </div>
+
+                    <div>
+                        <p id="avisos"></p>
+                    </div>
+
+                    <button type="submit" class="btn btn-success">Enviar</button>
+
+                </form>
+            </div>
+        </main>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+        <script src="formulario.js"></script>
+</body>
+
+</html>

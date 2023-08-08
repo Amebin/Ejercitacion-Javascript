@@ -46,124 +46,99 @@ console.log(alimentos)
 6) Qué problema podemos observar al probar varios pedidos?.
 
 ----------------------------------------------------------------
+// FORMULARIOS javascript
 
-Ejercicios para practicar la lógica de lo visto hasta ahora en el módulo 2
-‌
-1.
-Solicita un nombre, la edad y nuestra por consola el mensaje "Hola ___, tienes ___ años y el año que viene tendrás ___ años"
-Realiza el ejercicio con prompt (mensaje) y haz uso de los template strings.
+//constantes, variables, arrays 
 
-let nombre = prompt(`indicanos tu nombre por favor `)
-let edad = prompt(`indicanos tu edad por favor `)
+const formulario = document.querySelector('form')
 
-console.log(`"Hola ${nombre}, tienes ${edad} años y el año que viene tendras ${parseInt(edad) + 1} años"`)
+const nombre = document.getElementById('nombre')
+const apellido = document.getElementById('apellido')
+const usuario = document.getElementById('usuario')
+const contraseña = document.getElementById('contraseña')
+const mensaje = document.getElementById('mensaje')
+const formacion = document.getElementById('formacion')
+const postgrado = document.getElementById('postgrado')
 
-2.
-Escribe un programa que pueda calcular el área de 2 figuras geométricas: triangulo y rectángulo. En primer lugar pregunta
-de qué figura se quiere calcular el área, después solicita los datos
-que necesites para calcularlo. Utiliza switch para pedir los datos según la figura.
-triangulo = b * h/2
-rectangulo = b * h
+const opcionesFormacion = ['Primario', 'Secundario', 'universitario']
 
-const tiposPermitidos = ['T', 'R'];
-let tipoFigura = '';
+// declaracion de funciones
 
-do {
-    tipoFigura = prompt('Seleccione entre triángulo (T) y rectángulo (R):').toUpperCase();
-} while(tiposPermitidos.includes(tipoFigura) === false)
-
-function resultado (mensaje){
-   console.log(mensaje)
-}
-
-switch(tipoFigura){
-   case 'T':
-      const baseT = prompt('Indique base del triangulo');
-      const alturaT = prompt('Indique altura del triangulo');
-      resultado(`La Superficie del triangulo es ${(baseT * alturaT) / 2}`)
-      break;
-
-   case 'R':
-      const baseR = prompt('Indique base del rectangulo');
-      const alturaR = prompt('Indique altura del rectangulo');
-      resultado(`La Superficie del rectangulo es ${baseR * alturaR}`)
-      break;
-}
-
-3.
-Solicita un número e 
-imprime todos los números pares e impares
-desde 1 hasta ese número con el mensaje "es par" o "es impar"
-Por ej, si el número es 5 el resultado debería ser:
-1 - es impar
-2 - es par
-3 - es impar
-4 - es par
-5 - es impar
-
-let numero = parseInt(prompt(`indicanos un numero por favor`))
-   
-for(let i = 1; i < numero + 1; i++){
-   if(i % 2 === 0){
-      console.log(`${i} - es par`)
-   } else{
-      console.log(`${i} - es impar`)
+function cargar_Formacion(){
+   for (let i = 0; i < opcionesFormacion.length; i++){
+      const opcion = document.createElement('option');
+      opcion.text = opcionesFormacion[i];
+      opcion.value = opcionesFormacion[i].toLowerCase();
+      formacion.add(opcion);
    }
-}
+};
 
-
-4.
-Escribe un programa que permita ir introduciendo una serie
-indeterminada de números mientras su suma no supere 50. Cuando esto
-ocurra, se debe mostrar el total acumulado y el contador de cuantos
-números se han introducido.
-
-let numero;
-let limite = 50;
-let suma = 0;
-let contador = 0;
-
-do {
-   numero = parseInt(prompt(`Ingresa un numero por favor`))
-   suma += numero;
-   contador = contador + 1;
-} while (suma < limite)
-
-console.log(`Se ingresaron ${contador} numeros, sumando un total de ${suma}`)
-
-5.
-Crea 3 arrays. El primero tendrá 5 números, el segundo array se llamará
-pares y el tercero impares, ambos arrays estarán vacíos [ ]
-
-Multiplica cada uno de los números del primer array por un número aleatorio entre 1 y 10
-
-Si el resultado es par, guarda ese número en el array de pares y si es impar en el array de impares.
-Mostrar por consola: array de pares e impares
-Tip: se recomienda el uso de for
-
-let numeros = ["20", "2", "15", "3", "7"]
-let pares = []
-let impares = []
-let resultado = 0
-
-function numeroAleatorio(){
-   return Math.floor(Math.random() * 10) + 1;
-}
-
-function multiplicador(dato1, dato2){
-   return dato1 * dato2
-}
-
-for (let i = 1; i <= numeros.length; i++){
-   resultado = multiplicador(numeros[i - 1], numeroAleatorio())
+//declaracion de eventos 
+formulario.addEventListener('submit', function(event){
+   event.preventDefault();
    
-   if (resultado % 2 === 0){
-      pares.push(resultado)
+   if (formulario.checkValidity()) { // El formulario está listo para procesar
+      const contenido_frm = `Datos de formulario listos para procesar:<br>${formacion.value}<br>${nombre.value}<br>${apellido.value}<br>${usuario.value}<br>${clave.value}<br>${postgrado.checked}`;
+      mensaje2.innerHTML = contenido_frm;
+      mensaje2.style.display = 'block';
    } else {
-      impares.push(resultado)
+      console.log('Formulario ERROR');
+      formacion.focus();
    }
+});
+
+contraseña.addEventListener('invalid', function (event) {
+   event.preventDefault();
+   
+   mensaje.innerText = 'Clave no válida (min 8, max 12 caracteres)';
+   mensaje.style.display = 'block';
+});
+
+postgrado.addEventListener('click', function (event) {
+   if (postgrado.checked && (formacion.value === 'primario' || formacion.value === 'secundario')) {
+      mensaje.innerText = 'Se requiere como mínimo Universitario para aplicar a postgrado';
+      mensaje.style.display = 'block';
+   } else if (!postgrado.checked) {
+      mensaje.style.display = 'none';
+   }
+})
+
+
+//flujo principal 
+cargar_Formacion();
+
+*/
+
+
+/*
+Reproducir lógica del tradicional juego piedra / papel / tijera, utilizando un array para las opciones
+y un par de funciones para solicitar juego del participante y elegir jugada del bot (computadora).
+
+Recordar:
+    1) igual elección: empate
+    2) TIJERA corta PAPEL
+    3) PIEDRA rompe TIJERA
+    4) PAPEL envuelve PIEDRA
+*/
+
+const personaObj = {
+   nombre : "Franco",
+   edad : 27,
+   dni : 22266688,
+   domicilio : "avenida siempre viva xxx",
+   hijos : 0,
+   profesion : "none",
 }
 
-console.log(`Numeros pares obtenidos ${pares}
-Numeros impares obtenidos ${impares}`)
-*/
+let personaArray = [
+   {
+      nombre : "Franco",
+      edad : 27,
+      dni : 22266688,
+      domicilio : "avenida siempre viva xxx",
+      hijos : 0,
+      profesion : "none",
+   }
+]
+
+console.log(`${personaArray.nombre} y un ${personaObj.nombre}`)
